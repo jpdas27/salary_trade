@@ -10,6 +10,18 @@ from requests.packages.urllib3.util.retry import Retry
 
 pd.set_option('display.float_format', '{:.2f}'.format)
 
+def is_last_thursday():
+    today = datetime.today()
+    # Find last day of the month
+    last_day = today.replace(day=1) + timedelta(days=32)
+    last_day = last_day.replace(day=1) - timedelta(days=1)
+
+    # Find the last Thursday
+    while last_day.weekday() != 3:  # 3 = Thursday
+        last_day -= timedelta(days=1)
+
+    return today.date() == last_day.date()
+
 def create_session():
     session = requests.Session()
     retries = Retry(
@@ -192,4 +204,7 @@ def main():
     print("Analysis completed successfully")
 
 if __name__ == "__main__":
-    main()
+    if is_last_thursday():
+        main()
+    else:
+        print("Not the last Thursday. Exiting.")

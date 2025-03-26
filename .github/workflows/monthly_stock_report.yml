@@ -3,8 +3,8 @@ name: Monthly Stock Report
 on:
   schedule:
     # Runs at 00:00 UTC on the last Thursday of every month
-    - cron: '0 0 * * 4'  # Runs every Thursday
-
+    - cron: '0 6 * * 4'  # Runs every Thursday
+  workflow_dispatch: 
 jobs:
   generate-and-send:
     runs-on: ubuntu-latest
@@ -21,12 +21,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install yfinance pandas openpyxl requests
+          pip install -r requirements.txt
 
       - name: Run script
         run: python app.py
 
-      - name: Send Email (Optional)
+      - name: Send Email
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
