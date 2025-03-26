@@ -29,13 +29,13 @@ jobs:
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.gmail.com
+          server_address: smtp.office365.com
           server_port: 587
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Monthly Stock Report"
           body: "Please find attached the monthly stock analysis."
           to: "jyotipdas85@gmail.com"
-          from: "jpdas27@gmail.com"
+          from: "jyotipdas85@outlook.com"
           attachments: "fno_analysis.xlsx"
 
