@@ -208,3 +208,8 @@ if __name__ == "__main__":
         main()
     else:
         print("Not the last Thursday. Exiting.")
+
+import shutil
+
+# Move the file to GitHub workspace
+shutil.move("fno_analysis.xlsx", "/github/workspace/fno_analysis.xlsx")
