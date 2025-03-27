@@ -209,7 +209,13 @@ if __name__ == "__main__":
     else:
         print("Not the last Thursday. Exiting.")
 
+import os
 import shutil
 
-# Move the file to GitHub workspace
-shutil.move("fno_analysis.xlsx", "/github/workspace/fno_analysis.xlsx")
+output_file = "fno_analysis.xlsx"
+
+if os.path.exists(output_file):
+    print(f"File {output_file} exists. Moving it to GitHub workspace...")
+    shutil.move(output_file, "/github/workspace/fno_analysis.xlsx")
+else:
+    print(f"Error: File {output_file} not found. Check script execution.")
