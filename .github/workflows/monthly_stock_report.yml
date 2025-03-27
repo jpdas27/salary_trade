@@ -37,5 +37,5 @@ jobs:
           body: "Please find attached the monthly stock analysis."
           to: "jyotipdas85@gmail.com"
           from: "jyotipdas85@outlook.com"
-          attachments: "fno_analysis.xlsx"
+          attachments: "/home/runner/work/salary_trade/salary_trade/fno_analysis.xlsx"
 
