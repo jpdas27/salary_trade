@@ -25,6 +25,25 @@ jobs:
 
       - name: Run script
         run: python app.py
+      
+      - name: Verify File Exists
+        run: |
+          if [ -f "fno_analysis.xlsx" ]; then
+            echo "File generated successfully."
+          else
+            echo "File NOT found!"
+            exit 1
+          fi
+      
+      - name: Commit and Push Excel File to Repo
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add fno_analysis.xlsx
+            git commit -m "Add latest stock analysis report"
+            git push origin main  # Change 'main' to your repo’s default branch
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
