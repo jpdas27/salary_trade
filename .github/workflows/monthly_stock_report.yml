@@ -42,7 +42,7 @@ jobs:
             git add fno_analysis.xlsx
             git commit -m "Add latest stock analysis report"
             git push origin main  # Change 'main' to your repo’s default branch
-          env:
+        env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Send Email
