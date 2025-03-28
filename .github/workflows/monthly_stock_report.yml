@@ -25,6 +25,9 @@ jobs:
 
       - name: Run script
         run: python app.py
+
+      - name: Debug: Show Directory Contents
+        run: pwd;ls -la
       
       - name: Verify File Exists
         run: |
