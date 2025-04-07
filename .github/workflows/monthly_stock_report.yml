@@ -53,5 +53,5 @@ jobs:
           subject: "Monthly Stock Report"
           body: "Please find attached the monthly stock analysis."
           to: "jyotipdas85@gmail.com"
-          from: "jyotipdas85@outlook.com"
+          from: "jyotipdas85@gmail.com"
           attachments: "fno_analysis.xlsx"
