@@ -26,7 +26,8 @@ jobs:
 
       - name: Run script
         run: |
-          python app.py
+          # python app.py
+          python app_direct.py
 
       - name: "Debug: Show Directory Contents"
         run: |
