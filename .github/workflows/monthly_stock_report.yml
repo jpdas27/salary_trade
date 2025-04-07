@@ -2,9 +2,10 @@ name: Monthly Stock Report
 
 on:
   schedule:
-    # Runs at 00:00 UTC on the last Thursday of every month
-    - cron: '0 6 * * 4'  # Runs every Thursday
-  workflow_dispatch: 
+    # Runs at 06:00 UTC (11:30 AM IST) on every Thursday
+    - cron: '0 6 * * 4'
+  workflow_dispatch:
+
 jobs:
   generate-and-send:
     runs-on: ubuntu-latest
@@ -28,26 +29,18 @@ jobs:
           python app.py
 
       - name: "Debug: Show Directory Contents"
-        run: pwd;ls -la
-      
-      # - name: Verify File Exists
-      #   run: |
-      #     if [ -f "fno_analysis.xlsx" ]; then
-      #       echo "File generated successfully."
-      #     else
-      #       echo "File NOT found!"
-      #       exit 1
-      #     fi
-      
-      # - name: Commit and Push Excel File to Repo
-      #   run: |
-      #       git config --global user.name "github-actions"
-      #       git config --global user.email "github-actions@github.com"
-      #       git add fno_analysis.xlsx
-      #       git commit -m "Add latest stock analysis report"
-      #       git push origin main  # Change 'main' to your repo’s default branch
-      #   env:
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "📂 Current Directory: $(pwd)"
+          ls -la
+
+      - name: Verify File Exists
+        run: |
+          if [ -f "fno_analysis.xlsx" ]; then
+            echo "✅ File generated successfully."
+          else
+            echo "❌ File NOT found!"
+            exit 1
+          fi
 
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
@@ -60,5 +53,4 @@ jobs:
           body: "Please find attached the monthly stock analysis."
           to: "jyotipdas85@gmail.com"
           from: "jyotipdas85@outlook.com"
-          attachments: "/home/runner/work/salary_trade/salary_trade/fno_analysis.xlsx"
-
+          attachments: "fno_analysis.xlsx"
