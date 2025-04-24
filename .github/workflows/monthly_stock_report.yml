@@ -51,6 +51,4 @@ jobs:
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
           git add fno_analysis.xlsx
           git commit -m "Add/update fno_analysis.xlsx" || echo "No changes to commit"
-          git push origin HEAD:main
-
-      
+          git push origin HEAD:${{ github.ref_name }}
