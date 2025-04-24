@@ -48,7 +48,10 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+
+          # Replace origin using the token correctly
+          git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/${{ github.repository }}
+
           git add fno_analysis.xlsx
-          git commit -m "Add/update fno_analysis.xlsx" || echo "No changes to commit"
+          git diff --cached --quiet || git commit -m "Add/update fno_analysis.xlsx"
           git push origin HEAD:${{ github.ref_name }}
