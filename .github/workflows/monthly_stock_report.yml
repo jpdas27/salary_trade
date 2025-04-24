@@ -50,15 +50,4 @@ jobs:
              git commit -m "Add/update fno_analysis.xlsx" ||             echo "No changes to commit"
              git push
 
-      - name: Send Email
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.sendgrid.net
-          server_port: 587
-          username: apikey
-          password: ${{ secrets.SENDGRID_API_KEY }}
-          subject: "Monthly Stock Report"
-          body: "Please find attached the monthly stock analysis."
-          to: "jyotipdas85@gmail.com"
-          from: "jyotipdas85@gmail.com"
-          attachments: "fno_analysis.xlsx"
+      
