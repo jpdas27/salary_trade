@@ -42,16 +42,8 @@ jobs:
             echo "❌ File NOT found!"
             exit 1
           fi
-      - name: Commit and push Excel file
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-
-          # Replace origin using the token correctly
-          git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/${{ github.repository }}
-
-          git add fno_analysis.xlsx
-          git diff --cached --quiet || git commit -m "Add/update fno_analysis.xlsx"
-          git push origin HEAD:${{ github.ref_name }}
+     - name: Upload Excel file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+         name: fno-analysis
+         path: fno_analysis.xlsx
