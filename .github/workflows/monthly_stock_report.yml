@@ -44,6 +44,8 @@ jobs:
           fi
       - name: copy the file
         run: |
+             git config --global user.name "github-actions"
+             git config --global user.email "github-actions@github.com"
              git add fno_analysis.xlsx
              git commit -m "Add/update fno_analysis.xlsx" ||             echo "No changes to commit"
              git push
