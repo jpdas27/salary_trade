@@ -123,9 +123,9 @@ def send_email_with_attachment(to_email, subject, body, attachment_path):
 
 
 def main():
-    # if not is_last_thursday():
-    #     logging.info("⏭️ Not last Thursday, exiting.")
-    #     return
+    if not is_last_thursday():
+        logging.info("⏭️ Not last Thursday, exiting.")
+        return
 
     try:
         otp = generate_totp(TOTP_SECRET)
